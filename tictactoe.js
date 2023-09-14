@@ -7,17 +7,20 @@ prompt = require("prompt-sync")()
 
 const masterGrid = {1:0 ,2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0}
 let gameGrid = {1:0 ,2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0}
+const restMoves = [1,2,3,4,5,6,7,8,9]
+let remainingMoves = [1,2,3,4,5,6,7,8,9]
 
 function difficulty (user){
-    difficulties = ['easy', 'medium', 'hard']
+    difficulties = ['easy']
     level = prompt(`Choose game difficulty for COMPUTER${user.ID} (easy/medium/hard): `)
-    while (!(difficulty in difficulties)){
-        level = prompt(`INVALID INPUT\nChoose game difficulty for COMPUTER${user.ID} (easy/medium/hard): `)
+    console.log(level, difficulties.includes(level))
+    while (!(difficulties.includes(level))){
+        level = prompt(`Level not coded\nChoose game difficulty for COMPUTER${user.ID} (easy/medium/hard): `)
     }
     return level
 }
 
-function computerMove(level, remainingMoves){
+function computerMove(level){
     switch(level){
         case('easy'):
         console.log(remainingMoves.length)
@@ -32,7 +35,7 @@ function computerMove(level, remainingMoves){
     }
 }
 
-function move(user, remainingMoves){
+function move(user){
     const type = user.type
     let choice = null
     switch(type){
@@ -84,7 +87,8 @@ function verify(user){
         if (combinations[comb][1].toString() == winComb.toString()){
             graphics()
             console.log(`User ${user.ID} WON!!`)
-            console.log('\n\nNEW GAME\n\n');
+            console.log('\n\nNEW GAME\n\n')
+            remainingMoves = restMoves
             game()
         }
     }return false   
@@ -122,33 +126,42 @@ function game(){
             break;
 
         case("1"):
-            user1 = user(1, 'Human')
-            user2 = user(2, 'Computer')
+            user1 = user(1, 'human')
+            user2 = user(2, 'computer')
             user2.level = difficulty(user2);
             break;
 
         case('0'):
-            user1 = user(1, 'Computer')
-            user2 = user(2, 'Computer')
+            user1 = user(1, 'computer')
+            user2 = user(2, 'computer')
             user1.level = difficulty(user1)
             user2.level = difficulty(user2);
             break;
 
         default:
             console.log('Error: Invalid number of players')
+            remainingMoves = restMoves
             game()
     }
     graphics()
-    while (remainingMoves){
-        move(user1)
-        verify(user1)
-        graphics()
+    const randomStart = Math.floor(Math.random()*2+1)
+    const firstPlayer = () =>{move(user1); verify(user1); graphics()}
+    const secondPlayer = () => {move(user2); verify(user2); graphics()}
 
-        move(user2)
-        verify(user2)
-        graphics()
-    }
+
+    while (remainingMoves){
+        if(randomStart == 1){
+            console.log('USER 1 plays first')
+            firstPlayer()
+            secondPlayer()}
+        else{
+            console.log('USER 2 plays first')
+            secondPlayer()
+            firstPlayer()}
+        }
+        
     console.log("It's a TIE\nStarting new game")
+    remainingMoves = restMoves
     game()
 }
 
