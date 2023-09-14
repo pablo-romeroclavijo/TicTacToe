@@ -1,29 +1,19 @@
-let gameGrid = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
-// let pos = (i, j) => gameGrid[i][j]
-// let combinations = {
-//     col1: [pos(0, 0), pos(1, 0), pos(2, 0)],
-//     col2: [pos(0, 1), pos(1, 1), pos(2, 1)],
-//     col3: [pos(0, 2), pos(1, 2), pos(2, 2)],
-//     row1: [pos(0, 0), pos(0, 1), pos(0, 2)],
-//     row2: [pos(1, 0), pos(1, 1), pos(1, 2)],
-//     row3: [pos(2, 0), pos(2, 1), pos(2, 2)],
-//     dig1: [pos(0, 0), pos(1, 1), pos(2, 2)],
-//     dig2: [pos(0, 2), pos(1, 1), pos(2, 0)],
-// }
 
-// for(let comb in combinations){
-//     console.log(combinations[comb])
-// }
+let gameGrid = {1:0 ,2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0}
+let g = (i) => gameGrid[i]
+
+let combinations = {
+    row1 : [[1,2,3], [g(1),g(2),g(3)]],
+    row2 : [[4,5,6], [g(4),g(5),g(6)]],
+    row3 : [[7,8,9],[g(7),g(8),g(9)]],
+
+    col1 : [[1,4,7],[g(1),g(4),g(7)]],
+    col2 : [[2,5,8],[g(2),g(5),g(8)]],
+    col3 : [[3,6,9],[g(3),g(6),g(9)]],
 
 
-for(row in gameGrid){
-    const symbols = {
-        0: ' ',
-        1: 'O',
-        2: 'X'}
+    dig1 : [[1,5,9],[g(1),g(5),g(9)]],
+    dig2 : [[3,5,7],[g(3),g(5),g(7)]]}
 
-    s = symbols
-    for
-    console.log('+---+---+---+'),
-    console.log(`| ${s[0]} | ${s[1]} | ${s[0]} |`)
-}
+    console.log(combinations)
+    for(comb in combinations){console.log(combinations[comb][1])}
