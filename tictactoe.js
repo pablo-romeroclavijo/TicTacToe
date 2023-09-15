@@ -138,7 +138,7 @@ function graphics(){
     
         s = symbols
         let g = gameGrid
-        console.log('   BOARD             POSITIONS')
+        console.log('\n    BOARD            POSITIONS')
         console.log('+---+---+---+      +---+---+---+')
         console.log(`| ${s[g[1]]} | ${s[g[2]]} | ${s[g[3]]} |      | 1 | 2 | 3 |`)
         console.log('+---+---+---+      +---+---+---+')
