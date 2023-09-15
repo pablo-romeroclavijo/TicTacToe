@@ -18,13 +18,11 @@ function difficulty (user){
     }
     return level
 }
-
 function computerMove(user){
     let level = user.level
 
     switch(level){
         case('easy'):
-        console.log(remainingMoves.length, remainingMoves)
         const randomIndex = Math.floor(Math.random()*remainingMoves.length);
         return remainingMoves[randomIndex]
 
@@ -82,7 +80,6 @@ function computerMove(user){
         pass
     }
 }
-
 function move(user){
     const type = user.type
     let choice = null
@@ -104,7 +101,6 @@ function move(user){
     else {console.log('Position already used'); move(user)}
     
 }
-
 function verify(ID, grid){
     let g = (i) => grid[i]
     let combinations = {
@@ -134,8 +130,6 @@ function verify(ID, grid){
     }
     return results   
 }
-
-
 function graphics(){
     const symbols = {
         0: ' ',
@@ -153,14 +147,13 @@ function graphics(){
         console.log(`| ${s[g[7]]} | ${s[g[8]]} | ${s[g[9]]} |      | 7 | 8 | 9 |`)
         console.log('+---+---+---+      +---+---+---+') 
     }
-
 function game(){
     gameGrid = {...masterGrid}
     remainingMoves = [...restMoves]
     let user =  (number, typ, symbol, dif = null) => {return {ID: number, type: typ, symbol: symbol, level: dif}}
 
   
-    const nPlayers = prompt('Number of players (0, 1 or 2):' )
+    const nPlayers = prompt('Number of players (0, 1 or 2): ' )
     switch(nPlayers){
         case("2"):
             user1 = user(1, 'Human', 'X')
@@ -181,7 +174,7 @@ function game(){
             break;
 
         default:
-            console.log('Error: Invalid number of players')
+            console.log('\nError: Invalid number of players')
             remainingMoves = restMoves
             game()
     }
@@ -224,5 +217,6 @@ function game(){
     console.log("It's a TIE\n\nStarting new game"); 
     game()
     }
+
 
     game()
