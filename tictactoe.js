@@ -97,6 +97,7 @@ function move(user){
         gameGrid[choice] = user.ID
         let index = remainingMoves.indexOf(choice)
         remainingMoves.splice(index, 1)
+        
     }else if(choice > 10 | choice < 1){console.log('Invalid input'); move(user)}
     else {console.log('Position already used'); move(user)}
     
@@ -167,8 +168,8 @@ function game(){
             break;
 
         case('0'):
-            user1 = user(1, 'computer', 'X')
-            user2 = user(2, 'computer', 'O')
+            user1 = user(1, 'Computer', 'X')
+            user2 = user(2, 'Computer', 'O')
             user1.level = difficulty(user1)
             user2.level = difficulty(user2);
             break;
