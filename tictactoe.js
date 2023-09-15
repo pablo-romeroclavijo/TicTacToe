@@ -98,7 +98,7 @@ function move(user){
         let index = remainingMoves.indexOf(choice)
         remainingMoves.splice(index, 1)
         
-    }else if(choice > 10 | choice < 1){console.log(choice); console.log('Invalid input'); move(user)}
+    }else if(choice > 10 | choice < 1){console.log('Invalid input'); move(user)}
     else {console.log('Position already used'); move(user)}
     
 }
